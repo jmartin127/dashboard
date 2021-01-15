@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option go_package = "github.com/jmartin127/dashboard/traffic/traffic";
+
+package traffic;
+
+service Traffic {
+  rpc GetTrafficTime (GetTrafficRequest) returns (GetTrafficReply) {}
+}
+
+message GetTrafficRequest {
+  string origin = 1;
+  string destination = 2;
+}
+
+message GetTrafficReply {
+  float distanceMiles = 1;
+}
