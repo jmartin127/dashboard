@@ -12,7 +12,7 @@ Helpful Quickstart: https://grpc.io/docs/languages/go/quickstart/
 
 gRPCurl: https://github.com/fullstorydev/grpcurl
 
-# Generating code
+# Generating code from Proto
 
 protoc --go_out=. --go_opt=paths=source_relative \
     --go-grpc_out=. --go-grpc_opt=paths=source_relative \
