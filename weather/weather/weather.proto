@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option go_package = "github.com/jmartin127/dashboard/weather/weather";
+
+package weather;
+
+service Weather {
+  rpc GetCurrentWeather (GetCurrentWeatherRequest) returns (GetCurrentWeatherReply) {}
+}
+
+message GetCurrentWeatherRequest {
+  string address = 1;
+}
+
+message GetCurrentWeatherReply {
+  int32 tempFahrenheit = 1;
+  int32 precipitationPct = 2;
+  int32 humidityPct = 3;
+  int32 windMPH = 4;
+}
