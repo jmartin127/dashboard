@@ -20,6 +20,7 @@ type server struct {
 	pb.UnimplementedTrafficServer
 }
 
+// TODO move gRPC functions to separate package
 func (s *server) GetTravelTime(ctx context.Context, in *pb.GetTravelTimeRequest) (*pb.GetTravelTimeReply, error) {
 	// TODO integrate with Google API
 	return &pb.GetTravelTimeReply{TravelTime: durationpb.New(11 * time.Minute)}, nil
