@@ -12,6 +12,8 @@ Helpful Quickstart: https://grpc.io/docs/languages/go/quickstart/
 
 gRPCurl: https://github.com/fullstorydev/grpcurl
 
+grpc-json-proxy: https://github.com/jnewmano/grpc-json-proxy
+
 # Generating code from Proto
 
 protoc --go_out=. --go_opt=paths=source_relative \
@@ -21,5 +23,12 @@ protoc --go_out=. --go_opt=paths=source_relative \
 # Making requests
 
 ```
+$ grpcurl -plaintext localhost:50051 list traffic.Traffic
+traffic.Traffic.GetTravelTime
+```
+
+```
 $ grpcurl -d '{"origin": "my house", "destination": "Lehi"}' -plaintext localhost:50051 traffic.Traffic/GetTrafficTime
 ```
+
+

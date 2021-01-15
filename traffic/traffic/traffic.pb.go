@@ -6,6 +6,7 @@ package traffic
 import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
+	duration "github.com/golang/protobuf/ptypes/duration"
 	math "math"
 )
 
@@ -20,7 +21,7 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
-type GetTrafficRequest struct {
+type GetTravelTimeRequest struct {
 	Origin               string   `protobuf:"bytes,1,opt,name=origin,proto3" json:"origin,omitempty"`
 	Destination          string   `protobuf:"bytes,2,opt,name=destination,proto3" json:"destination,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -28,87 +29,87 @@ type GetTrafficRequest struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *GetTrafficRequest) Reset()         { *m = GetTrafficRequest{} }
-func (m *GetTrafficRequest) String() string { return proto.CompactTextString(m) }
-func (*GetTrafficRequest) ProtoMessage()    {}
-func (*GetTrafficRequest) Descriptor() ([]byte, []int) {
+func (m *GetTravelTimeRequest) Reset()         { *m = GetTravelTimeRequest{} }
+func (m *GetTravelTimeRequest) String() string { return proto.CompactTextString(m) }
+func (*GetTravelTimeRequest) ProtoMessage()    {}
+func (*GetTravelTimeRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_9b91e267bbb4bdf8, []int{0}
 }
 
-func (m *GetTrafficRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetTrafficRequest.Unmarshal(m, b)
+func (m *GetTravelTimeRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetTravelTimeRequest.Unmarshal(m, b)
 }
-func (m *GetTrafficRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetTrafficRequest.Marshal(b, m, deterministic)
+func (m *GetTravelTimeRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetTravelTimeRequest.Marshal(b, m, deterministic)
 }
-func (m *GetTrafficRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetTrafficRequest.Merge(m, src)
+func (m *GetTravelTimeRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetTravelTimeRequest.Merge(m, src)
 }
-func (m *GetTrafficRequest) XXX_Size() int {
-	return xxx_messageInfo_GetTrafficRequest.Size(m)
+func (m *GetTravelTimeRequest) XXX_Size() int {
+	return xxx_messageInfo_GetTravelTimeRequest.Size(m)
 }
-func (m *GetTrafficRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetTrafficRequest.DiscardUnknown(m)
+func (m *GetTravelTimeRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetTravelTimeRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_GetTrafficRequest proto.InternalMessageInfo
+var xxx_messageInfo_GetTravelTimeRequest proto.InternalMessageInfo
 
-func (m *GetTrafficRequest) GetOrigin() string {
+func (m *GetTravelTimeRequest) GetOrigin() string {
 	if m != nil {
 		return m.Origin
 	}
 	return ""
 }
 
-func (m *GetTrafficRequest) GetDestination() string {
+func (m *GetTravelTimeRequest) GetDestination() string {
 	if m != nil {
 		return m.Destination
 	}
 	return ""
 }
 
-type GetTrafficReply struct {
-	DistanceMiles        float32  `protobuf:"fixed32,1,opt,name=distanceMiles,proto3" json:"distanceMiles,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+type GetTravelTimeReply struct {
+	TravelTime           *duration.Duration `protobuf:"bytes,1,opt,name=travelTime,proto3" json:"travelTime,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}           `json:"-"`
+	XXX_unrecognized     []byte             `json:"-"`
+	XXX_sizecache        int32              `json:"-"`
 }
 
-func (m *GetTrafficReply) Reset()         { *m = GetTrafficReply{} }
-func (m *GetTrafficReply) String() string { return proto.CompactTextString(m) }
-func (*GetTrafficReply) ProtoMessage()    {}
-func (*GetTrafficReply) Descriptor() ([]byte, []int) {
+func (m *GetTravelTimeReply) Reset()         { *m = GetTravelTimeReply{} }
+func (m *GetTravelTimeReply) String() string { return proto.CompactTextString(m) }
+func (*GetTravelTimeReply) ProtoMessage()    {}
+func (*GetTravelTimeReply) Descriptor() ([]byte, []int) {
 	return fileDescriptor_9b91e267bbb4bdf8, []int{1}
 }
 
-func (m *GetTrafficReply) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetTrafficReply.Unmarshal(m, b)
+func (m *GetTravelTimeReply) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetTravelTimeReply.Unmarshal(m, b)
 }
-func (m *GetTrafficReply) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetTrafficReply.Marshal(b, m, deterministic)
+func (m *GetTravelTimeReply) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetTravelTimeReply.Marshal(b, m, deterministic)
 }
-func (m *GetTrafficReply) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetTrafficReply.Merge(m, src)
+func (m *GetTravelTimeReply) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetTravelTimeReply.Merge(m, src)
 }
-func (m *GetTrafficReply) XXX_Size() int {
-	return xxx_messageInfo_GetTrafficReply.Size(m)
+func (m *GetTravelTimeReply) XXX_Size() int {
+	return xxx_messageInfo_GetTravelTimeReply.Size(m)
 }
-func (m *GetTrafficReply) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetTrafficReply.DiscardUnknown(m)
+func (m *GetTravelTimeReply) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetTravelTimeReply.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_GetTrafficReply proto.InternalMessageInfo
+var xxx_messageInfo_GetTravelTimeReply proto.InternalMessageInfo
 
-func (m *GetTrafficReply) GetDistanceMiles() float32 {
+func (m *GetTravelTimeReply) GetTravelTime() *duration.Duration {
 	if m != nil {
-		return m.DistanceMiles
+		return m.TravelTime
 	}
-	return 0
+	return nil
 }
 
 func init() {
-	proto.RegisterType((*GetTrafficRequest)(nil), "traffic.GetTrafficRequest")
-	proto.RegisterType((*GetTrafficReply)(nil), "traffic.GetTrafficReply")
+	proto.RegisterType((*GetTravelTimeRequest)(nil), "traffic.GetTravelTimeRequest")
+	proto.RegisterType((*GetTravelTimeReply)(nil), "traffic.GetTravelTimeReply")
 }
 
 func init() {
@@ -116,19 +117,20 @@ func init() {
 }
 
 var fileDescriptor_9b91e267bbb4bdf8 = []byte{
-	// 211 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0x2d, 0x29, 0x4a, 0x4c,
-	0x4b, 0xcb, 0x4c, 0xd6, 0x87, 0xd2, 0x7a, 0x05, 0x45, 0xf9, 0x25, 0xf9, 0x42, 0xec, 0x50, 0xae,
-	0x92, 0x2f, 0x97, 0xa0, 0x7b, 0x6a, 0x49, 0x08, 0x84, 0x17, 0x94, 0x5a, 0x58, 0x9a, 0x5a, 0x5c,
-	0x22, 0x24, 0xc6, 0xc5, 0x96, 0x5f, 0x94, 0x99, 0x9e, 0x99, 0x27, 0xc1, 0xa8, 0xc0, 0xa8, 0xc1,
-	0x19, 0x04, 0xe5, 0x09, 0x29, 0x70, 0x71, 0xa7, 0xa4, 0x16, 0x97, 0x64, 0xe6, 0x25, 0x96, 0x64,
-	0xe6, 0xe7, 0x49, 0x30, 0x81, 0x25, 0x91, 0x85, 0x94, 0xcc, 0xb9, 0xf8, 0x91, 0x8d, 0x2b, 0xc8,
-	0xa9, 0x14, 0x52, 0xe1, 0xe2, 0x4d, 0xc9, 0x2c, 0x2e, 0x49, 0xcc, 0x4b, 0x4e, 0xf5, 0xcd, 0xcc,
-	0x49, 0x2d, 0x06, 0x9b, 0xc9, 0x14, 0x84, 0x2a, 0x68, 0x14, 0xcc, 0xc5, 0x0e, 0xd5, 0x25, 0xe4,
-	0xc1, 0xc5, 0x87, 0x30, 0x23, 0x24, 0x33, 0x37, 0x55, 0x48, 0x4a, 0x0f, 0xe6, 0x7a, 0x0c, 0xb7,
-	0x4a, 0x49, 0x60, 0x95, 0x2b, 0xc8, 0xa9, 0x54, 0x62, 0x70, 0x32, 0x8c, 0xd2, 0x4f, 0xcf, 0x2c,
-	0xc9, 0x28, 0x4d, 0xd2, 0x4b, 0xce, 0xcf, 0xd5, 0xcf, 0xca, 0x4d, 0x2c, 0x2a, 0xc9, 0xcc, 0x33,
-	0x34, 0x32, 0xd7, 0x4f, 0x49, 0x2c, 0xce, 0x48, 0xca, 0x4f, 0x2c, 0x4a, 0xd1, 0x47, 0x0b, 0x9e,
-	0x24, 0x36, 0x70, 0xf8, 0x18, 0x03, 0x02, 0x00, 0x00, 0xff, 0xff, 0x1c, 0x39, 0xb9, 0xbf, 0x38,
-	0x01, 0x00, 0x00,
+	// 240 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x74, 0x90, 0xc1, 0x4b, 0xc3, 0x30,
+	0x14, 0xc6, 0x9d, 0x87, 0x0d, 0xdf, 0xf0, 0x12, 0x54, 0xe6, 0x44, 0x19, 0x3d, 0x79, 0x4a, 0x58,
+	0x3d, 0x88, 0x57, 0x11, 0x3c, 0x89, 0x52, 0x7a, 0x10, 0x6f, 0xe9, 0x9a, 0x76, 0x4f, 0xda, 0xbc,
+	0x9a, 0xbe, 0x08, 0xfb, 0xef, 0x85, 0x34, 0x93, 0x39, 0xdc, 0x29, 0xbc, 0xef, 0x3d, 0x7e, 0xfc,
+	0xbe, 0xc0, 0x39, 0x3b, 0x5d, 0x55, 0xb8, 0x52, 0xf1, 0x95, 0x9d, 0x23, 0x26, 0x31, 0x89, 0xe3,
+	0xfc, 0xa6, 0x26, 0xaa, 0x1b, 0xa3, 0x42, 0x5c, 0xf8, 0x4a, 0x95, 0xde, 0x69, 0x46, 0xb2, 0xc3,
+	0x61, 0xf2, 0x06, 0x67, 0xcf, 0x86, 0x73, 0xa7, 0xbf, 0x4d, 0x93, 0x63, 0x6b, 0x32, 0xf3, 0xe5,
+	0x4d, 0xcf, 0xe2, 0x02, 0xc6, 0xe4, 0xb0, 0x46, 0x3b, 0x1b, 0x2d, 0x46, 0xb7, 0x27, 0x59, 0x9c,
+	0xc4, 0x02, 0xa6, 0xa5, 0xe9, 0x19, 0x6d, 0x80, 0xcc, 0x8e, 0xc3, 0x72, 0x37, 0x4a, 0x5e, 0x41,
+	0xec, 0x11, 0xbb, 0x66, 0x23, 0x1e, 0x00, 0xf8, 0x37, 0x0a, 0xcc, 0x69, 0x7a, 0x29, 0x07, 0x39,
+	0xb9, 0x95, 0x93, 0x4f, 0x51, 0x2e, 0xdb, 0x39, 0x4e, 0xdf, 0x61, 0x92, 0x0f, 0x6d, 0xc4, 0x0b,
+	0x9c, 0xfe, 0x61, 0x8b, 0x6b, 0xb9, 0xed, 0xfd, 0x5f, 0x8b, 0xf9, 0xd5, 0xa1, 0x75, 0xd7, 0x6c,
+	0x92, 0xa3, 0xc7, 0xe5, 0x87, 0xaa, 0x91, 0xd7, 0xbe, 0x90, 0x2b, 0x6a, 0xd5, 0x67, 0xab, 0x1d,
+	0xa3, 0x5d, 0xa6, 0xf7, 0xaa, 0xd4, 0xfd, 0xba, 0x20, 0xed, 0x4a, 0xb5, 0xf7, 0xbd, 0xc5, 0x38,
+	0xb8, 0xde, 0xfd, 0x04, 0x00, 0x00, 0xff, 0xff, 0x51, 0x86, 0x3f, 0x9d, 0x78, 0x01, 0x00, 0x00,
 }

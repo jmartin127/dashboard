@@ -4,15 +4,17 @@ option go_package = "github.com/jmartin127/dashboard/traffic/traffic";
 
 package traffic;
 
+import "google/protobuf/duration.proto";
+
 service Traffic {
-  rpc GetTrafficTime (GetTrafficRequest) returns (GetTrafficReply) {}
+  rpc GetTravelTime (GetTravelTimeRequest) returns (GetTravelTimeReply) {}
 }
 
-message GetTrafficRequest {
+message GetTravelTimeRequest {
   string origin = 1;
   string destination = 2;
 }
 
-message GetTrafficReply {
-  float distanceMiles = 1;
+message GetTravelTimeReply {
+  google.protobuf.Duration travelTime = 1;
 }

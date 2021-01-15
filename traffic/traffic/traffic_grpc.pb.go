@@ -17,7 +17,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TrafficClient interface {
-	GetTrafficTime(ctx context.Context, in *GetTrafficRequest, opts ...grpc.CallOption) (*GetTrafficReply, error)
+	GetTravelTime(ctx context.Context, in *GetTravelTimeRequest, opts ...grpc.CallOption) (*GetTravelTimeReply, error)
 }
 
 type trafficClient struct {
@@ -28,9 +28,9 @@ func NewTrafficClient(cc grpc.ClientConnInterface) TrafficClient {
 	return &trafficClient{cc}
 }
 
-func (c *trafficClient) GetTrafficTime(ctx context.Context, in *GetTrafficRequest, opts ...grpc.CallOption) (*GetTrafficReply, error) {
-	out := new(GetTrafficReply)
-	err := c.cc.Invoke(ctx, "/traffic.Traffic/GetTrafficTime", in, out, opts...)
+func (c *trafficClient) GetTravelTime(ctx context.Context, in *GetTravelTimeRequest, opts ...grpc.CallOption) (*GetTravelTimeReply, error) {
+	out := new(GetTravelTimeReply)
+	err := c.cc.Invoke(ctx, "/traffic.Traffic/GetTravelTime", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -41,7 +41,7 @@ func (c *trafficClient) GetTrafficTime(ctx context.Context, in *GetTrafficReques
 // All implementations must embed UnimplementedTrafficServer
 // for forward compatibility
 type TrafficServer interface {
-	GetTrafficTime(context.Context, *GetTrafficRequest) (*GetTrafficReply, error)
+	GetTravelTime(context.Context, *GetTravelTimeRequest) (*GetTravelTimeReply, error)
 	mustEmbedUnimplementedTrafficServer()
 }
 
@@ -49,8 +49,8 @@ type TrafficServer interface {
 type UnimplementedTrafficServer struct {
 }
 
-func (UnimplementedTrafficServer) GetTrafficTime(context.Context, *GetTrafficRequest) (*GetTrafficReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetTrafficTime not implemented")
+func (UnimplementedTrafficServer) GetTravelTime(context.Context, *GetTravelTimeRequest) (*GetTravelTimeReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTravelTime not implemented")
 }
 func (UnimplementedTrafficServer) mustEmbedUnimplementedTrafficServer() {}
 
@@ -65,20 +65,20 @@ func RegisterTrafficServer(s *grpc.Server, srv TrafficServer) {
 	s.RegisterService(&_Traffic_serviceDesc, srv)
 }
 
-func _Traffic_GetTrafficTime_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetTrafficRequest)
+func _Traffic_GetTravelTime_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTravelTimeRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TrafficServer).GetTrafficTime(ctx, in)
+		return srv.(TrafficServer).GetTravelTime(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/traffic.Traffic/GetTrafficTime",
+		FullMethod: "/traffic.Traffic/GetTravelTime",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TrafficServer).GetTrafficTime(ctx, req.(*GetTrafficRequest))
+		return srv.(TrafficServer).GetTravelTime(ctx, req.(*GetTravelTimeRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -88,8 +88,8 @@ var _Traffic_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*TrafficServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetTrafficTime",
-			Handler:    _Traffic_GetTrafficTime_Handler,
+			MethodName: "GetTravelTime",
+			Handler:    _Traffic_GetTravelTime_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

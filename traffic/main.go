@@ -4,10 +4,12 @@ import (
 	"context"
 	"log"
 	"net"
+	"time"
 
 	pb "github.com/jmartin127/dashboard/traffic/traffic"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
+	durationpb "google.golang.org/protobuf/types/known/durationpb"
 )
 
 const (
@@ -18,9 +20,9 @@ type server struct {
 	pb.UnimplementedTrafficServer
 }
 
-func (s *server) GetTrafficTime(ctx context.Context, in *pb.GetTrafficRequest) (*pb.GetTrafficReply, error) {
-	log.Printf("Received: %v", in)
-	return &pb.GetTrafficReply{}, nil
+func (s *server) GetTravelTime(ctx context.Context, in *pb.GetTravelTimeRequest) (*pb.GetTravelTimeReply, error) {
+	// TODO integrate with Google API
+	return &pb.GetTravelTimeReply{TravelTime: durationpb.New(11 * time.Minute)}, nil
 }
 
 func main() {
