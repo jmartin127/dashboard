@@ -1,12 +1,15 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "traffic/traffic.proto",
-    "version": "version not set"
+    "title": "Dashboard Service",
+    "version": "v1.0.0"
   },
   "tags": [
     {
       "name": "Traffic"
+    },
+    {
+      "name": "Weather"
     }
   ],
   "consumes": [
@@ -45,6 +48,38 @@
         ],
         "tags": [
           "Traffic"
+        ]
+      }
+    },
+    "/weather/current": {
+      "post": {
+        "operationId": "Weather_GetCurrentWeather",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/weatherGetCurrentWeatherReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/weatherGetCurrentWeatherRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Weather"
         ]
       }
     }
@@ -95,6 +130,35 @@
           "type": "string"
         },
         "destination": {
+          "type": "string"
+        }
+      }
+    },
+    "weatherGetCurrentWeatherReply": {
+      "type": "object",
+      "properties": {
+        "tempFahrenheit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "precipitationPct": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "humidityPct": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "windMPH": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "weatherGetCurrentWeatherRequest": {
+      "type": "object",
+      "properties": {
+        "address": {
           "type": "string"
         }
       }

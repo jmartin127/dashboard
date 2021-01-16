@@ -34,17 +34,22 @@ $ protoc --go_out=. --go_opt=paths=source_relative \
     traffic/traffic.proto
 ```
 
-Generate ALL:
+Generate everything besides swagger (server, client, gateway, validation):
 ```
    protoc -I . \
      --go_out=./gen/go/ --go_opt=paths=source_relative \
      --go-grpc_out=./gen/go/ --go-grpc_opt=paths=source_relative \
      --grpc-gateway_out=./gen/go/ --grpc-gateway_opt paths=source_relative \
      --grpc-gateway_opt logtostderr=true \
-     --openapiv2_out ./gen/openapiv2 --openapiv2_opt logtostderr=true \
      traffic/traffic.proto
 ```
 
+Generate Swagger:
+```
+   protoc -I . \
+     --openapiv2_out ./gen/openapiv2 --openapiv2_opt logtostderr=true,allow_merge=true,merge_file_name=dashboard.json \
+     traffic/traffic.proto weather/weather.proto
+```
 
 
 # Making requests
