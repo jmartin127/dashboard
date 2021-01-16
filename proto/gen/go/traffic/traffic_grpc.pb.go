@@ -11,6 +11,7 @@ import (
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
+// Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
 // TrafficClient is the client API for Traffic service.
@@ -61,8 +62,8 @@ type UnsafeTrafficServer interface {
 	mustEmbedUnimplementedTrafficServer()
 }
 
-func RegisterTrafficServer(s *grpc.Server, srv TrafficServer) {
-	s.RegisterService(&_Traffic_serviceDesc, srv)
+func RegisterTrafficServer(s grpc.ServiceRegistrar, srv TrafficServer) {
+	s.RegisterService(&Traffic_ServiceDesc, srv)
 }
 
 func _Traffic_GetTravelTime_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -83,7 +84,10 @@ func _Traffic_GetTravelTime_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
-var _Traffic_serviceDesc = grpc.ServiceDesc{
+// Traffic_ServiceDesc is the grpc.ServiceDesc for Traffic service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Traffic_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "traffic.Traffic",
 	HandlerType: (*TrafficServer)(nil),
 	Methods: []grpc.MethodDesc{

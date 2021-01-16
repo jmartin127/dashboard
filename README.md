@@ -14,6 +14,14 @@ gRPCurl: https://github.com/fullstorydev/grpcurl
 
 grpc-json-proxy: https://github.com/jnewmano/grpc-json-proxy
 
+grpc-gateway: https://github.com/grpc-ecosystem/grpc-gateway
+
+grpc google.api.http annotations: https://github.com/googleapis/googleapis/blob/master/google/api/http.proto#L46
+
+all the crazy annotations: https://github.com/grpc-ecosystem/grpc-gateway/blob/master/examples/internal/proto/examplepb/a_bit_of_everything.proto
+
+Buff Style Guide: https://docs.buf.build/style-guide/#files-and-packages
+
 # Generating code from Proto
 
 ```
@@ -22,8 +30,14 @@ $ protoc --go_out=. --go_opt=paths=source_relative \
     traffic/traffic.proto
 ```
 
+Generate ALL:
 ```
-$ protoc --go_out=. --go_opt=paths=source_relative     --go-grpc_out=. --go-grpc_opt=paths=source_relative     weather/weather.proto
+   protoc -I . \
+     --go_out=./gen/go/ --go_opt=paths=source_relative \
+     --go-grpc_out=./gen/go/ --go-grpc_opt=paths=source_relative \
+     --grpc-gateway_out=./gen/go/ --grpc-gateway_opt paths=source_relative \
+     --grpc-gateway_opt logtostderr=true \
+     traffic/traffic.proto
 ```
 
 # Making requests
@@ -52,3 +66,15 @@ $ grpcurl -d '{"address": "lehi"}' -plaintext localhost:50052 weather.Weather/Ge
   "windMPH": 5
 }
 ```
+
+Retrieve travel time gRPC:
+```
+$ curl -X POST "localhost:8081/traffic/travel/time"
+{"travelTime":"660s"}
+```
+
+# TODO
+1. Working Swagger (Open API) pages
+1. Lyft validation
+1. Dockerize protoc tools (protoc-gen-grpc-gateway, protoc-gen-openapiv2, protoc-gen-go, protoc-gen-go-grpc)
+1. Launch scripts

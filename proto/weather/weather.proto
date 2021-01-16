@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option go_package = "github.com/jmartin127/dashboard/proto/gen/go/weather";
+
+package weather;
+
+import "google/api/annotations.proto";
+
+service Weather {
+  rpc GetCurrentWeather (GetCurrentWeatherRequest) returns (GetCurrentWeatherReply) {
+    option (google.api.http) = {
+      post: "/weather/current"
+      body: "*"
+    };
+  }
+}
+
+message GetCurrentWeatherRequest {
+  string address = 1;
+}
+
+message GetCurrentWeatherReply {
+  int32 tempFahrenheit = 1;
+  int32 precipitationPct = 2;
+  int32 humidityPct = 3;
+  int32 windMPH = 4;
+}

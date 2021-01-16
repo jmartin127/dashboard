@@ -6,7 +6,7 @@ import (
 	"net"
 	"time"
 
-	pb "github.com/jmartin127/dashboard/traffic/traffic"
+	pb "github.com/jmartin127/dashboard/proto/gen/go/traffic"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 	durationpb "google.golang.org/protobuf/types/known/durationpb"
