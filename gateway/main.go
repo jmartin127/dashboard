@@ -17,10 +17,12 @@ import (
 	"google.golang.org/grpc"
 
 	trafficgw "github.com/jmartin127/dashboard/proto/gen/go/traffic"
+	weathergw "github.com/jmartin127/dashboard/proto/gen/go/weather"
 )
 
 var (
-	grpcServerEndpoint = flag.String("grpc-server-endpoint-traffic", "localhost:50051", "gRPC Traffic server endpoint")
+	grpcServerEndpointTraffic = flag.String("grpc-server-endpoint-traffic", "localhost:50051", "gRPC Traffic server endpoint")
+	grpcServerEndpointWeather = flag.String("grpc-server-endpoint-weather", "localhost:50052", "gRPC Weather server endpoint")
 )
 
 const (
@@ -36,8 +38,12 @@ func run() error {
 	// Note: Make sure the gRPC server is running properly and accessible
 	mux := runtime.NewServeMux()
 	opts := []grpc.DialOption{grpc.WithInsecure()}
-	err := trafficgw.RegisterTrafficHandlerFromEndpoint(ctx, mux, *grpcServerEndpoint, opts)
-	if err != nil {
+
+	// Register the handlers for each service
+	if err := trafficgw.RegisterTrafficHandlerFromEndpoint(ctx, mux, *grpcServerEndpointTraffic, opts); err != nil {
+		return err
+	}
+	if err := weathergw.RegisterWeatherHandlerFromEndpoint(ctx, mux, *grpcServerEndpointWeather, opts); err != nil {
 		return err
 	}
 

@@ -67,13 +67,20 @@ $ grpcurl -d '{"address": "lehi"}' -plaintext localhost:50052 weather.Weather/Ge
 }
 ```
 
-Retrieve travel time gRPC:
+Retrieve travel time via REST:
 ```
 $ curl -X POST "localhost:8081/traffic/travel/time"
 {"travelTime":"660s"}
 ```
 
+Retrieve weather via REST:
+```
+$ curl -X POST "localhost:8081/weather/current"
+{"tempFahrenheit":39,"precipitationPct":1,"humidityPct":38,"windMPH":5}
+```
+
 # TODO
+1. Actually doing GET instead of POSTs in google.api annotations
 1. Working Swagger (Open API) pages
 1. Lyft validation
 1. Dockerize protoc tools (protoc-gen-grpc-gateway, protoc-gen-openapiv2, protoc-gen-go, protoc-gen-go-grpc)
