@@ -22,6 +22,10 @@ all the crazy annotations: https://github.com/grpc-ecosystem/grpc-gateway/blob/m
 
 Buff Style Guide: https://docs.buf.build/style-guide/#files-and-packages
 
+Swagger UI: https://www.ribice.ba/serving-swaggerui-golang/
+
+Swagger UI: https://github.com/swagger-api/swagger-ui
+
 # Generating code from Proto
 
 ```
@@ -37,8 +41,11 @@ Generate ALL:
      --go-grpc_out=./gen/go/ --go-grpc_opt=paths=source_relative \
      --grpc-gateway_out=./gen/go/ --grpc-gateway_opt paths=source_relative \
      --grpc-gateway_opt logtostderr=true \
+     --openapiv2_out ./gen/openapiv2 --openapiv2_opt logtostderr=true \
      traffic/traffic.proto
 ```
+
+
 
 # Making requests
 

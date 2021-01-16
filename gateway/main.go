@@ -34,21 +34,33 @@ func run() error {
 	ctx, cancel := context.WithCancel(ctx)
 	defer cancel()
 
+	// set up regular net/http mux
+	mux := http.NewServeMux()
+
 	// Register gRPC server endpoint
 	// Note: Make sure the gRPC server is running properly and accessible
-	mux := runtime.NewServeMux()
+	gwmux := runtime.NewServeMux()
 	opts := []grpc.DialOption{grpc.WithInsecure()}
 
 	// Register the handlers for each service
-	if err := trafficgw.RegisterTrafficHandlerFromEndpoint(ctx, mux, *grpcServerEndpointTraffic, opts); err != nil {
+	if err := trafficgw.RegisterTrafficHandlerFromEndpoint(ctx, gwmux, *grpcServerEndpointTraffic, opts); err != nil {
 		return err
 	}
-	if err := weathergw.RegisterWeatherHandlerFromEndpoint(ctx, mux, *grpcServerEndpointWeather, opts); err != nil {
+	if err := weathergw.RegisterWeatherHandlerFromEndpoint(ctx, gwmux, *grpcServerEndpointWeather, opts); err != nil {
 		return err
 	}
 
+	// set up swagger
+	mux.Handle("/", gwmux)
+	serveSwagger(mux)
+
 	log.Printf("Listening on port %s\n", port)
 	return http.ListenAndServe(port, mux)
+}
+
+func serveSwagger(mux *http.ServeMux) {
+	fs := http.FileServer(http.Dir("../swaggerui"))
+	mux.Handle("/swaggerui/", http.StripPrefix("/swaggerui/", fs))
 }
 
 func main() {
