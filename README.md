@@ -30,12 +30,6 @@ Validation (protoc-gen-validate): https://github.com/envoyproxy/protoc-gen-valid
 
 # Generating code from Proto
 
-```
-$ protoc --go_out=. --go_opt=paths=source_relative \
-    --go-grpc_out=. --go-grpc_opt=paths=source_relative \
-    traffic/traffic.proto
-```
-
 Generate everything besides swagger (server, client, gateway, validation):
 ```
    protoc -I . \
@@ -53,7 +47,6 @@ Generate Swagger:
      --openapiv2_out ./gen/openapiv2 --openapiv2_opt logtostderr=true,allow_merge=true,merge_file_name=dashboard.json \
      traffic/traffic.proto weather/weather.proto
 ```
-
 
 # Making requests
 
@@ -100,3 +93,4 @@ $ curl -X POST "localhost:8081/weather/current"
 1. Launch scripts
 1. Create a presentation
 1. Actually hook this up to Google APIs
+1. Fix the title fo the swagger page
