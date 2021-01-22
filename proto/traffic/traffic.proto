@@ -10,15 +10,14 @@ import "google/api/annotations.proto";
 service Traffic {
   rpc GetTravelTime (GetTravelTimeRequest) returns (GetTravelTimeReply) {
     option (google.api.http) = {
-      post: "/traffic/travel/time"
-      body: "*"
+      get: "/traffic/travelTime"
     };
   }
 }
 
 message GetTravelTimeRequest {
-  string origin = 1;
-  string destination = 2;
+  string origin = 1;      // By default maps to URL query parameter `origin`.
+  string destination = 2; // By default maps to URL query parameter `destination`.
 }
 
 message GetTravelTimeReply {

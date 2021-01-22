@@ -1,8 +1,8 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Dashboard Service",
-    "version": "v1.0.0"
+    "title": "traffic/traffic.proto",
+    "version": "version not set"
   },
   "tags": [
     {
@@ -19,8 +19,8 @@
     "application/json"
   ],
   "paths": {
-    "/traffic/travel/time": {
-      "post": {
+    "/traffic/travelTime": {
+      "get": {
         "operationId": "Traffic_GetTravelTime",
         "responses": {
           "200": {
@@ -38,12 +38,16 @@
         },
         "parameters": [
           {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/trafficGetTravelTimeRequest"
-            }
+            "name": "origin",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "destination",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -52,7 +56,7 @@
       }
     },
     "/weather/current": {
-      "post": {
+      "get": {
         "operationId": "Weather_GetCurrentWeather",
         "responses": {
           "200": {
@@ -70,12 +74,10 @@
         },
         "parameters": [
           {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/weatherGetCurrentWeatherRequest"
-            }
+            "name": "address",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -123,17 +125,6 @@
         }
       }
     },
-    "trafficGetTravelTimeRequest": {
-      "type": "object",
-      "properties": {
-        "origin": {
-          "type": "string"
-        },
-        "destination": {
-          "type": "string"
-        }
-      }
-    },
     "weatherGetCurrentWeatherReply": {
       "type": "object",
       "properties": {
@@ -152,14 +143,6 @@
         "windMPH": {
           "type": "integer",
           "format": "int32"
-        }
-      }
-    },
-    "weatherGetCurrentWeatherRequest": {
-      "type": "object",
-      "properties": {
-        "address": {
-          "type": "string"
         }
       }
     }

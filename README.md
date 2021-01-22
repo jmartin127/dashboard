@@ -92,8 +92,9 @@ $ curl -X POST "localhost:8081/weather/current"
 ```
 
 # TODO
-1. Actually doing GET instead of POSTs in google.api annotations
-1. Working Swagger (Open API) pages
 1. Lyft validation
+1. Don't want to be copying dashboard.swagger.json to the swaggerui directory
 1. Dockerize protoc tools (protoc-gen-grpc-gateway, protoc-gen-openapiv2, protoc-gen-go, protoc-gen-go-grpc)
 1. Launch scripts
+1. Create a presentation
+1. Actually hook this up to Google APIs

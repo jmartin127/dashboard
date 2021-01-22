@@ -9,14 +9,13 @@ import "google/api/annotations.proto";
 service Weather {
   rpc GetCurrentWeather (GetCurrentWeatherRequest) returns (GetCurrentWeatherReply) {
     option (google.api.http) = {
-      post: "/weather/current"
-      body: "*"
+      get: "/weather/current" 
     };
   }
 }
 
 message GetCurrentWeatherRequest {
-  string address = 1;
+  string address = 1; // By default maps to URL query parameter `address`.
 }
 
 message GetCurrentWeatherReply {
