@@ -5,6 +5,7 @@ option go_package = "github.com/jmartin127/dashboard/proto/gen/go/weather";
 package weather;
 
 import "google/api/annotations.proto";
+import "validate/validate.proto";
 
 service Weather {
   rpc GetCurrentWeather (GetCurrentWeatherRequest) returns (GetCurrentWeatherReply) {
@@ -15,7 +16,7 @@ service Weather {
 }
 
 message GetCurrentWeatherRequest {
-  string address = 1; // By default maps to URL query parameter `address`.
+  string address = 1 [(validate.rules).string.min_len = 1]; // By default maps to URL query parameter `address`.
 }
 
 message GetCurrentWeatherReply {

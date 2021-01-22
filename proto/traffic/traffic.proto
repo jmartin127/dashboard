@@ -6,6 +6,7 @@ package traffic;
 
 import "google/protobuf/duration.proto";
 import "google/api/annotations.proto";
+import "validate/validate.proto";
 
 service Traffic {
   rpc GetTravelTime (GetTravelTimeRequest) returns (GetTravelTimeReply) {
@@ -16,8 +17,8 @@ service Traffic {
 }
 
 message GetTravelTimeRequest {
-  string origin = 1;      // By default maps to URL query parameter `origin`.
-  string destination = 2; // By default maps to URL query parameter `destination`.
+  string origin = 1 [(validate.rules).string.min_len = 1];      // By default maps to URL query parameter `origin`.
+  string destination = 2 [(validate.rules).string.min_len = 1]; // By default maps to URL query parameter `destination`.
 }
 
 message GetTravelTimeReply {

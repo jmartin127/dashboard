@@ -7,7 +7,9 @@ import (
 
 	pb "github.com/jmartin127/dashboard/proto/gen/go/weather"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/reflection"
+	"google.golang.org/grpc/status"
 )
 
 const (
@@ -20,6 +22,10 @@ type server struct {
 
 // TODO move gRPC functions to separate package
 func (s *server) GetCurrentWeather(ctx context.Context, in *pb.GetCurrentWeatherRequest) (*pb.GetCurrentWeatherReply, error) {
+	if err := in.Validate(); err != nil {
+		return nil, status.Error(codes.InvalidArgument, err.Error())
+	}
+
 	// TODO integrate with Google API
 	return &pb.GetCurrentWeatherReply{TempFahrenheit: 39, PrecipitationPct: 1, HumidityPct: 38, WindMPH: 5}, nil
 }

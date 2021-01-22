@@ -8,7 +8,9 @@ import (
 
 	pb "github.com/jmartin127/dashboard/proto/gen/go/traffic"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/reflection"
+	"google.golang.org/grpc/status"
 	durationpb "google.golang.org/protobuf/types/known/durationpb"
 )
 
@@ -22,6 +24,10 @@ type server struct {
 
 // TODO move gRPC functions to separate package
 func (s *server) GetTravelTime(ctx context.Context, in *pb.GetTravelTimeRequest) (*pb.GetTravelTimeReply, error) {
+	if err := in.Validate(); err != nil {
+		return nil, status.Error(codes.InvalidArgument, err.Error())
+	}
+
 	// TODO integrate with Google API
 	return &pb.GetTravelTimeReply{TravelTime: durationpb.New(11 * time.Minute)}, nil
 }

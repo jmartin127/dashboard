@@ -26,6 +26,8 @@ Swagger UI: https://www.ribice.ba/serving-swaggerui-golang/
 
 Swagger UI: https://github.com/swagger-api/swagger-ui
 
+Validation (protoc-gen-validate): https://github.com/envoyproxy/protoc-gen-validate
+
 # Generating code from Proto
 
 ```
@@ -41,6 +43,7 @@ Generate everything besides swagger (server, client, gateway, validation):
      --go-grpc_out=./gen/go/ --go-grpc_opt=paths=source_relative \
      --grpc-gateway_out=./gen/go/ --grpc-gateway_opt paths=source_relative \
      --grpc-gateway_opt logtostderr=true \
+     --validate_out=lang=go,paths=source_relative:./gen/go \
      traffic/traffic.proto
 ```
 
@@ -92,7 +95,6 @@ $ curl -X POST "localhost:8081/weather/current"
 ```
 
 # TODO
-1. Lyft validation
 1. Don't want to be copying dashboard.swagger.json to the swaggerui directory
 1. Dockerize protoc tools (protoc-gen-grpc-gateway, protoc-gen-openapiv2, protoc-gen-go, protoc-gen-go-grpc)
 1. Launch scripts
