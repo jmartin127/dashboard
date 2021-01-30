@@ -65,7 +65,6 @@ Swagger UI: https://github.com/swagger-api/swagger-ui
 
 Validation (protoc-gen-validate): https://github.com/envoyproxy/protoc-gen-validate
 # TODO
-1. Add an Aggergation Dashboard service
 1. Add a User service
 1. Fix the title fo the swagger page
 1. Finish the presentation

@@ -10,6 +10,9 @@
     },
     {
       "name": "Weather"
+    },
+    {
+      "name": "Dashboard"
     }
   ],
   "consumes": [
@@ -19,6 +22,42 @@
     "application/json"
   ],
   "paths": {
+    "/dashboard": {
+      "get": {
+        "operationId": "Dashboard_GetDashboard",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetDashboardReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "originAddress",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "destinationAddress",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Dashboard"
+        ]
+      }
+    },
     "/traffic/travelTime": {
       "get": {
         "operationId": "Traffic_GetTravelTime",
@@ -135,6 +174,17 @@
         "windMPH": {
           "type": "integer",
           "format": "int32"
+        }
+      }
+    },
+    "v1GetDashboardReply": {
+      "type": "object",
+      "properties": {
+        "traffic": {
+          "$ref": "#/definitions/v1GetTravelTimeReply"
+        },
+        "weather": {
+          "$ref": "#/definitions/v1GetCurrentWeatherReply"
         }
       }
     },

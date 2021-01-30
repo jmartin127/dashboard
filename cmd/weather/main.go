@@ -20,7 +20,6 @@ type server struct {
 	pb.UnimplementedWeatherServer
 }
 
-// TODO move gRPC functions to separate package
 func (s *server) GetCurrentWeather(ctx context.Context, in *pb.GetCurrentWeatherRequest) (*pb.GetCurrentWeatherReply, error) {
 	if err := in.Validate(); err != nil {
 		return nil, status.Error(codes.InvalidArgument, err.Error())
@@ -42,7 +41,7 @@ func main() {
 
 	pb.RegisterWeatherServer(s, &server{})
 
-	log.Printf("Listening on port %s\n", port)
+	log.Printf("Weather Service listening on port %s\n", port)
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}

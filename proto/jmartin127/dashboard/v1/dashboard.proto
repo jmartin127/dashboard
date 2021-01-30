@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package jmartin127.dashboard.v1;
+
+option go_package = "github.com/jmartin127/dashboard/proto/gen/go/jmartin127/dashboard/v1";
+
+import "google/api/annotations.proto";
+import "validate/validate.proto";
+import "jmartin127/traffic/v1/traffic.proto";
+import "jmartin127/weather/v1/weather.proto";
+
+service Dashboard {
+  rpc GetDashboard (GetDashboardRequest) returns (GetDashboardReply) {
+    option (google.api.http) = {
+      get: "/dashboard"
+    };
+  }
+}
+
+message GetDashboardRequest {
+  string originAddress = 1 [(validate.rules).string.min_len = 1];     
+  string destinationAddress = 2 [(validate.rules).string.min_len = 1];
+}
+
+message GetDashboardReply {
+  jmartin127.traffic.v1.GetTravelTimeReply traffic = 1;
+  jmartin127.weather.v1.GetCurrentWeatherReply weather = 2;
+}

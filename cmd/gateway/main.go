@@ -17,13 +17,15 @@ import (
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"google.golang.org/grpc"
 
+	dashboardgw "github.com/jmartin127/dashboard/proto/gen/go/jmartin127/dashboard/v1"
 	trafficgw "github.com/jmartin127/dashboard/proto/gen/go/jmartin127/traffic/v1"
 	weathergw "github.com/jmartin127/dashboard/proto/gen/go/jmartin127/weather/v1"
 )
 
 var (
-	grpcServerEndpointTraffic = flag.String("grpc-server-endpoint-traffic", "localhost:50051", "gRPC Traffic server endpoint")
-	grpcServerEndpointWeather = flag.String("grpc-server-endpoint-weather", "localhost:50052", "gRPC Weather server endpoint")
+	grpcServerEndpointTraffic   = flag.String("grpc-server-endpoint-traffic", "localhost:50051", "gRPC Traffic server endpoint")
+	grpcServerEndpointWeather   = flag.String("grpc-server-endpoint-weather", "localhost:50052", "gRPC Weather server endpoint")
+	grpcServerEndpointDashboard = flag.String("grpc-server-endpoint-dashboard", "localhost:50053", "gRPC Dashboard server endpoint")
 )
 
 const (
@@ -50,12 +52,15 @@ func run() error {
 	if err := weathergw.RegisterWeatherHandlerFromEndpoint(ctx, gwmux, *grpcServerEndpointWeather, opts); err != nil {
 		return err
 	}
+	if err := dashboardgw.RegisterDashboardHandlerFromEndpoint(ctx, gwmux, *grpcServerEndpointDashboard, opts); err != nil {
+		return err
+	}
 
 	// set up swagger
 	mux.Handle("/", gwmux)
 	serveSwagger(mux)
 
-	log.Printf("Listening on port %s\n", port)
+	log.Printf("Gateway listening on port %s\n", port)
 	return http.ListenAndServe(port, mux)
 }
 
