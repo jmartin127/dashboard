@@ -2,6 +2,41 @@
 
 This is an example project I put together to demonstrate the utility of some awesome services that exist within the gRPC ecosystem.
 
+# To Run Locally
+
+`make all`
+
+# Swagger
+
+http://localhost:8081/swaggerui/#/
+
+# Example gRPC requests
+
+List out gRPC functions supported by a service:
+```
+$ grpcurl -plaintext localhost:50051 list jmartin127.traffic.v1.Traffic
+jmartin127.traffic.v1.Traffic.GetTravelTime
+```
+
+Retrieve Travel Time:
+```
+$ grpcurl -d '{"originAddress": "my house", "destinationAddress": "Lehi"}' -plaintext localhost:50051 jmartin127.traffic.v1.Traffic/GetTravelTime
+{
+  "travelTime": "660s"
+}
+```
+
+Retrieve Current Weather:
+```
+$ grpcurl -d '{"address": "lehi"}' -plaintext localhost:50052 jmartin127.weather.v1.Weather/GetCurrentWeather
+{
+  "tempFahrenheit": 39,
+  "precipitationPct": 1,
+  "humidityPct": 38,
+  "windMPH": 5
+}
+```
+
 # References
 
 gRPC Resources: https://github.com/grpc-ecosystem/awesome-grpc#documentation
@@ -29,70 +64,10 @@ Swagger UI: https://www.ribice.ba/serving-swaggerui-golang/
 Swagger UI: https://github.com/swagger-api/swagger-ui
 
 Validation (protoc-gen-validate): https://github.com/envoyproxy/protoc-gen-validate
-
-# Generating code from Proto
-
-Generate everything besides swagger (server, client, gateway, validation):
-```
-   protoc -I . \
-     --go_out=./gen/go/ --go_opt=paths=source_relative \
-     --go-grpc_out=./gen/go/ --go-grpc_opt=paths=source_relative \
-     --grpc-gateway_out=./gen/go/ --grpc-gateway_opt paths=source_relative \
-     --grpc-gateway_opt logtostderr=true \
-     --validate_out=lang=go,paths=source_relative:./gen/go \
-     jmartin127/traffic/v1/traffic.proto
-```
-
-Generate Swagger:
-```
-   protoc -I . \
-     --openapiv2_out ./gen/openapiv2 --openapiv2_opt logtostderr=true,allow_merge=true,merge_file_name=dashboard.json \
-     traffic/traffic.proto weather/weather.proto
-```
-
-# Making requests
-
-List out gRPC functions supported by a service:
-```
-$ grpcurl -plaintext localhost:50051 list traffic.Traffic
-traffic.Traffic.GetTravelTime
-```
-
-Retrieve Travel Time:
-```
-$ grpcurl -d '{"origin": "my house", "destination": "Lehi"}' -plaintext localhost:50051 traffic.Traffic/GetTravelTime
-{
-  "travelTime": "660s"
-}
-```
-
-Retrieve Current Weather:
-```
-$ grpcurl -d '{"address": "lehi"}' -plaintext localhost:50052 weather.Weather/GetCurrentWeather
-{
-  "tempFahrenheit": 39,
-  "precipitationPct": 1,
-  "humidityPct": 38,
-  "windMPH": 5
-}
-```
-
-Retrieve travel time via REST:
-```
-$ curl -X POST "localhost:8081/traffic/travel/time"
-{"travelTime":"660s"}
-```
-
-Retrieve weather via REST:
-```
-$ curl -X POST "localhost:8081/weather/current"
-{"tempFahrenheit":39,"precipitationPct":1,"humidityPct":38,"windMPH":5}
-```
-
 # TODO
 1. Add an Aggergation Dashboard service
 1. Add a User service
 1. Fix the title fo the swagger page
 1. Finish the presentation
-1. Dockerize protoc tools (protoc-gen-grpc-gateway, protoc-gen-openapiv2, protoc-gen-go, protoc-gen-go-grpc)
 1. Actually hook this up to Google APIs
+1. Dockerize protoc tools (protoc-gen-grpc-gateway, protoc-gen-openapiv2, protoc-gen-go, protoc-gen-go-grpc)
