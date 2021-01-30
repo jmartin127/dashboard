@@ -11,6 +11,7 @@ import (
 	"flag"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/golang/glog"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
@@ -59,7 +60,8 @@ func run() error {
 }
 
 func serveSwagger(mux *http.ServeMux) {
-	fs := http.FileServer(http.Dir("../swaggerui"))
+	swaggerDir := os.Getenv("SWAGGER_UI_DIR")
+	fs := http.FileServer(http.Dir(swaggerDir))
 	mux.Handle("/swaggerui/", http.StripPrefix("/swaggerui/", fs))
 }
 
