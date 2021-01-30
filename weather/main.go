@@ -5,7 +5,7 @@ import (
 	"log"
 	"net"
 
-	pb "github.com/jmartin127/dashboard/proto/gen/go/weather"
+	pb "github.com/jmartin127/dashboard/proto/gen/go/jmartin127/weather/v1"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/reflection"

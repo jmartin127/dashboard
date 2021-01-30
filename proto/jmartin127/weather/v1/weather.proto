@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-option go_package = "github.com/jmartin127/dashboard/proto/gen/go/weather";
+package jmartin127.weather.v1;
 
-package weather;
+option go_package = "github.com/jmartin127/dashboard/proto/gen/go/jmartin127/weather/v1";
 
 import "google/api/annotations.proto";
 import "validate/validate.proto";

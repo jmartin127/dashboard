@@ -6,6 +6,8 @@ This is an example project I put together to demonstrate the utility of some awe
 
 gRPC Resources: https://github.com/grpc-ecosystem/awesome-grpc#documentation
 
+Mapping of gRPC errors to HTTP status codes: https://github.com/grpc-ecosystem/grpc-gateway/blob/master/runtime/errors.go
+
 Official Website: https://grpc.io/
 
 Helpful Quickstart: https://grpc.io/docs/languages/go/quickstart/
@@ -38,7 +40,7 @@ Generate everything besides swagger (server, client, gateway, validation):
      --grpc-gateway_out=./gen/go/ --grpc-gateway_opt paths=source_relative \
      --grpc-gateway_opt logtostderr=true \
      --validate_out=lang=go,paths=source_relative:./gen/go \
-     traffic/traffic.proto
+     jmartin127/traffic/v1/traffic.proto
 ```
 
 Generate Swagger:

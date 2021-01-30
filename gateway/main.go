@@ -16,8 +16,8 @@ import (
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"google.golang.org/grpc"
 
-	trafficgw "github.com/jmartin127/dashboard/proto/gen/go/traffic"
-	weathergw "github.com/jmartin127/dashboard/proto/gen/go/weather"
+	trafficgw "github.com/jmartin127/dashboard/proto/gen/go/jmartin127/traffic/v1"
+	weathergw "github.com/jmartin127/dashboard/proto/gen/go/jmartin127/weather/v1"
 )
 
 var (

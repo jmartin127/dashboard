@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-option go_package = "github.com/jmartin127/dashboard/proto/gen/go/traffic";
+package jmartin127.traffic.v1;
 
-package traffic;
+option go_package = "github.com/jmartin127/dashboard/proto/gen/go/jmartin127/traffic/v1";
 
 import "google/protobuf/duration.proto";
 import "google/api/annotations.proto";
@@ -17,8 +17,8 @@ service Traffic {
 }
 
 message GetTravelTimeRequest {
-  string origin = 1 [(validate.rules).string.min_len = 1];      // By default maps to URL query parameter `origin`.
-  string destination = 2 [(validate.rules).string.min_len = 1]; // By default maps to URL query parameter `destination`.
+  string originAddress = 1 [(validate.rules).string.min_len = 1];      // By default maps to URL query parameter `origin`.
+  string destinationAddress = 2 [(validate.rules).string.min_len = 1]; // By default maps to URL query parameter `destination`.
 }
 
 message GetTravelTimeReply {
