@@ -1,4 +1,8 @@
-all: swagger build run
+all: gen swagger build run
+
+gen:
+	cd cmd/traffic/ && make gen
+	cd cmd/weather/ && make gen
 
 swagger:
 	cd proto && \
