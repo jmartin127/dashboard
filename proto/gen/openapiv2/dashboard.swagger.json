@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "traffic/traffic.proto",
+    "title": "jmartin127/traffic/v1/traffic.proto",
     "version": "version not set"
   },
   "tags": [
@@ -26,7 +26,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/trafficGetTravelTimeReply"
+              "$ref": "#/definitions/v1GetTravelTimeReply"
             }
           },
           "default": {
@@ -38,13 +38,13 @@
         },
         "parameters": [
           {
-            "name": "origin",
+            "name": "originAddress",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
-            "name": "destination",
+            "name": "destinationAddress",
             "in": "query",
             "required": false,
             "type": "string"
@@ -62,7 +62,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/weatherGetCurrentWeatherReply"
+              "$ref": "#/definitions/v1GetCurrentWeatherReply"
             }
           },
           "default": {
@@ -117,15 +117,7 @@
         }
       }
     },
-    "trafficGetTravelTimeReply": {
-      "type": "object",
-      "properties": {
-        "travelTime": {
-          "type": "string"
-        }
-      }
-    },
-    "weatherGetCurrentWeatherReply": {
+    "v1GetCurrentWeatherReply": {
       "type": "object",
       "properties": {
         "tempFahrenheit": {
@@ -143,6 +135,14 @@
         "windMPH": {
           "type": "integer",
           "format": "int32"
+        }
+      }
+    },
+    "v1GetTravelTimeReply": {
+      "type": "object",
+      "properties": {
+        "travelTime": {
+          "type": "string"
         }
       }
     }
