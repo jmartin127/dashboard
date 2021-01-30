@@ -90,11 +90,9 @@ $ curl -X POST "localhost:8081/weather/current"
 ```
 
 # TODO
-1. Script that starts up services
-1. Script that does all code gen
-1. Don't want to be copying dashboard.swagger.json to the swaggerui directory
-1. Dockerize protoc tools (protoc-gen-grpc-gateway, protoc-gen-openapiv2, protoc-gen-go, protoc-gen-go-grpc)
-1. Launch scripts
-1. Create a presentation
-1. Actually hook this up to Google APIs
+1. Add an Aggergation Dashboard service
+1. Add a User service
 1. Fix the title fo the swagger page
+1. Finish the presentation
+1. Dockerize protoc tools (protoc-gen-grpc-gateway, protoc-gen-openapiv2, protoc-gen-go, protoc-gen-go-grpc)
+1. Actually hook this up to Google APIs
