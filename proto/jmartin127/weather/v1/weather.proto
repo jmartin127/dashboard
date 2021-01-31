@@ -5,6 +5,7 @@ package jmartin127.weather.v1;
 option go_package = "github.com/jmartin127/dashboard/proto/gen/go/jmartin127/weather/v1";
 
 import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
 import "validate/validate.proto";
 
 service Weather {
@@ -12,6 +13,10 @@ service Weather {
     option (google.api.http) = {
       get: "/weather/current" 
     };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+			summary: "Retrieve the weather at the given address";
+			description: "Use this endpoint to determine the weather at the given address. An address is required.";
+		};
   }
 }
 

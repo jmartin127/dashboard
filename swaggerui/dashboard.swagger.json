@@ -32,6 +32,8 @@
   "paths": {
     "/dashboard": {
       "get": {
+        "summary": "Retrieve a full dashboard of information",
+        "description": "Use this endpoint to retrieve the full dashboard of traffic and weather information. Both the origin and destination are required. The destination is used when retrieving the weather.",
         "operationId": "Dashboard_GetDashboard",
         "responses": {
           "200": {
@@ -68,6 +70,8 @@
     },
     "/traffic/travelTime": {
       "get": {
+        "summary": "Retrieve the travel time between the origin and destination",
+        "description": "Use this endpoint to determine the travel time between an origin and destination. Both the origin and destination are required.",
         "operationId": "Traffic_GetTravelTime",
         "responses": {
           "200": {
@@ -240,6 +244,8 @@
     },
     "/weather/current": {
       "get": {
+        "summary": "Retrieve the weather at the given address",
+        "description": "Use this endpoint to determine the weather at the given address. An address is required.",
         "operationId": "Weather_GetCurrentWeather",
         "responses": {
           "200": {

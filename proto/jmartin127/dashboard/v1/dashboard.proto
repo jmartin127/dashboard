@@ -27,6 +27,10 @@ service Dashboard {
     option (google.api.http) = {
       get: "/dashboard"
     };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+			summary: "Retrieve a full dashboard of information";
+			description: "Use this endpoint to retrieve the full dashboard of traffic and weather information. Both the origin and destination are required. The destination is used when retrieving the weather.";
+		};
   }
 }
 
