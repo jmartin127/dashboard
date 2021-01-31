@@ -19,6 +19,7 @@ import (
 
 	dashboardgw "github.com/jmartin127/dashboard/proto/gen/go/jmartin127/dashboard/v1"
 	trafficgw "github.com/jmartin127/dashboard/proto/gen/go/jmartin127/traffic/v1"
+	usergw "github.com/jmartin127/dashboard/proto/gen/go/jmartin127/user/v1"
 	weathergw "github.com/jmartin127/dashboard/proto/gen/go/jmartin127/weather/v1"
 )
 
@@ -26,6 +27,7 @@ var (
 	grpcServerEndpointTraffic   = flag.String("grpc-server-endpoint-traffic", "localhost:50051", "gRPC Traffic server endpoint")
 	grpcServerEndpointWeather   = flag.String("grpc-server-endpoint-weather", "localhost:50052", "gRPC Weather server endpoint")
 	grpcServerEndpointDashboard = flag.String("grpc-server-endpoint-dashboard", "localhost:50053", "gRPC Dashboard server endpoint")
+	grpcServerEndpointUser      = flag.String("grpc-server-endpoint-user", "localhost:50054", "gRPC User server endpoint")
 )
 
 const (
@@ -53,6 +55,9 @@ func run() error {
 		return err
 	}
 	if err := dashboardgw.RegisterDashboardHandlerFromEndpoint(ctx, gwmux, *grpcServerEndpointDashboard, opts); err != nil {
+		return err
+	}
+	if err := usergw.RegisterUsersHandlerFromEndpoint(ctx, gwmux, *grpcServerEndpointUser, opts); err != nil {
 		return err
 	}
 

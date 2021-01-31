@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package jmartin127.user.v1;
+
+option go_package = "github.com/jmartin127/dashboard/proto/gen/go/jmartin127/user/v1";
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "validate/validate.proto";
+
+service Users {
+  rpc AddUser (AddUserRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/users"
+      body: "*"
+    };
+  }
+
+  rpc ModifyUser (ModifyUserRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      put: "/users/{user.username}"
+      body: "*"
+    };
+  }
+
+  rpc GetUser (GetUserRequest) returns (GetUserReply) {
+    option (google.api.http) = {
+      get: "/users/{username}"
+    };
+  }
+
+  rpc DeleteUser (DeleteUserRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/users/{username}"
+    };
+  }
+}
+
+message AddUserRequest {
+  User user = 1 [(validate.rules).message.required = true];
+}
+
+message ModifyUserRequest {
+  User user = 1 [(validate.rules).message.required = true];
+}
+
+message GetUserRequest {
+  string username = 1 [(validate.rules).string.min_len = 1];
+}
+
+message GetUserReply {
+  User user = 1;
+}
+
+message DeleteUserRequest {
+  string username = 1 [(validate.rules).string.min_len = 1];
+}
+
+message User {
+  string username = 1 [(validate.rules).string.min_len = 1];
+  string email = 2 [(validate.rules).string.email = true];
+  string firstName = 3 [(validate.rules).string.min_len = 1];
+  string lastName = 4 [(validate.rules).string.min_len = 1];
+}
