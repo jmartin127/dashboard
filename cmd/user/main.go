@@ -69,7 +69,7 @@ func (s *server) GetUser(ctx context.Context, in *pb.GetUserRequest) (*pb.GetUse
 	return &pb.GetUserReply{User: users[in.Username]}, nil
 }
 
-func (s *server) DeleteUser(ctx context.Context, in *pb.DeleteUserRequest) (*empty.Empty, error) {
+func (s *server) RemoveUser(ctx context.Context, in *pb.RemoveUserRequest) (*empty.Empty, error) {
 	if err := in.Validate(); err != nil {
 		return nil, status.Error(codes.InvalidArgument, err.Error())
 	}

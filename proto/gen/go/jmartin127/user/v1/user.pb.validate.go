@@ -349,16 +349,16 @@ var _ interface {
 	ErrorName() string
 } = GetUserReplyValidationError{}
 
-// Validate checks the field values on DeleteUserRequest with the rules defined
+// Validate checks the field values on RemoveUserRequest with the rules defined
 // in the proto definition for this message. If any rules are violated, an
 // error is returned.
-func (m *DeleteUserRequest) Validate() error {
+func (m *RemoveUserRequest) Validate() error {
 	if m == nil {
 		return nil
 	}
 
 	if utf8.RuneCountInString(m.GetUsername()) < 1 {
-		return DeleteUserRequestValidationError{
+		return RemoveUserRequestValidationError{
 			field:  "Username",
 			reason: "value length must be at least 1 runes",
 		}
@@ -367,9 +367,9 @@ func (m *DeleteUserRequest) Validate() error {
 	return nil
 }
 
-// DeleteUserRequestValidationError is the validation error returned by
-// DeleteUserRequest.Validate if the designated constraints aren't met.
-type DeleteUserRequestValidationError struct {
+// RemoveUserRequestValidationError is the validation error returned by
+// RemoveUserRequest.Validate if the designated constraints aren't met.
+type RemoveUserRequestValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -377,24 +377,24 @@ type DeleteUserRequestValidationError struct {
 }
 
 // Field function returns field value.
-func (e DeleteUserRequestValidationError) Field() string { return e.field }
+func (e RemoveUserRequestValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e DeleteUserRequestValidationError) Reason() string { return e.reason }
+func (e RemoveUserRequestValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e DeleteUserRequestValidationError) Cause() error { return e.cause }
+func (e RemoveUserRequestValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e DeleteUserRequestValidationError) Key() bool { return e.key }
+func (e RemoveUserRequestValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e DeleteUserRequestValidationError) ErrorName() string {
-	return "DeleteUserRequestValidationError"
+func (e RemoveUserRequestValidationError) ErrorName() string {
+	return "RemoveUserRequestValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e DeleteUserRequestValidationError) Error() string {
+func (e RemoveUserRequestValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -406,14 +406,14 @@ func (e DeleteUserRequestValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sDeleteUserRequest.%s: %s%s",
+		"invalid %sRemoveUserRequest.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = DeleteUserRequestValidationError{}
+var _ error = RemoveUserRequestValidationError{}
 
 var _ interface {
 	Field() string
@@ -421,7 +421,7 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = DeleteUserRequestValidationError{}
+} = RemoveUserRequestValidationError{}
 
 // Validate checks the field values on User with the rules defined in the proto
 // definition for this message. If any rules are violated, an error is returned.

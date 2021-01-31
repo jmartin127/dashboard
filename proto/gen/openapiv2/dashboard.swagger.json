@@ -104,6 +104,8 @@
     },
     "/users": {
       "post": {
+        "summary": "Add a new User",
+        "description": "Use this endpoint to add a new user to the system. Each new user must have a unique username.",
         "operationId": "Users_AddUser",
         "responses": {
           "200": {
@@ -136,6 +138,8 @@
     },
     "/users/{user.username}": {
       "put": {
+        "summary": "Modify an existing User",
+        "description": "Use this endpoint to modify an existing user. Users are uniquely identified by their username.",
         "operationId": "Users_ModifyUser",
         "responses": {
           "200": {
@@ -174,6 +178,8 @@
     },
     "/users/{username}": {
       "get": {
+        "summary": "Retrieve an existing User",
+        "description": "Use this endpoint to retrieve users. Users are uniquely identified by their username.",
         "operationId": "Users_GetUser",
         "responses": {
           "200": {
@@ -202,7 +208,9 @@
         ]
       },
       "delete": {
-        "operationId": "Users_DeleteUser",
+        "summary": "Remove an existing user",
+        "description": "Use this endpoint to remove users from the system. Users are uniquely identified by their username.",
+        "operationId": "Users_RemoveUser",
         "responses": {
           "200": {
             "description": "A successful response.",

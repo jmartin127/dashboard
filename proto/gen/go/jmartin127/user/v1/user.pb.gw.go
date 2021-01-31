@@ -185,8 +185,8 @@ func local_request_Users_GetUser_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func request_Users_DeleteUser_0(ctx context.Context, marshaler runtime.Marshaler, client UsersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteUserRequest
+func request_Users_RemoveUser_0(ctx context.Context, marshaler runtime.Marshaler, client UsersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq RemoveUserRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -206,13 +206,13 @@ func request_Users_DeleteUser_0(ctx context.Context, marshaler runtime.Marshaler
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "username", err)
 	}
 
-	msg, err := client.DeleteUser(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.RemoveUser(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_Users_DeleteUser_0(ctx context.Context, marshaler runtime.Marshaler, server UsersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteUserRequest
+func local_request_Users_RemoveUser_0(ctx context.Context, marshaler runtime.Marshaler, server UsersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq RemoveUserRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -232,7 +232,7 @@ func local_request_Users_DeleteUser_0(ctx context.Context, marshaler runtime.Mar
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "username", err)
 	}
 
-	msg, err := server.DeleteUser(ctx, &protoReq)
+	msg, err := server.RemoveUser(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -312,18 +312,18 @@ func RegisterUsersHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 
 	})
 
-	mux.Handle("DELETE", pattern_Users_DeleteUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_Users_RemoveUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/jmartin127.user.v1.Users/DeleteUser")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/jmartin127.user.v1.Users/RemoveUser")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Users_DeleteUser_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Users_RemoveUser_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -331,7 +331,7 @@ func RegisterUsersHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 			return
 		}
 
-		forward_Users_DeleteUser_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Users_RemoveUser_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -436,23 +436,23 @@ func RegisterUsersHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 
 	})
 
-	mux.Handle("DELETE", pattern_Users_DeleteUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_Users_RemoveUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/jmartin127.user.v1.Users/DeleteUser")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/jmartin127.user.v1.Users/RemoveUser")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Users_DeleteUser_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Users_RemoveUser_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_Users_DeleteUser_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Users_RemoveUser_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -466,7 +466,7 @@ var (
 
 	pattern_Users_GetUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"users", "username"}, ""))
 
-	pattern_Users_DeleteUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"users", "username"}, ""))
+	pattern_Users_RemoveUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"users", "username"}, ""))
 )
 
 var (
@@ -476,5 +476,5 @@ var (
 
 	forward_Users_GetUser_0 = runtime.ForwardResponseMessage
 
-	forward_Users_DeleteUser_0 = runtime.ForwardResponseMessage
+	forward_Users_RemoveUser_0 = runtime.ForwardResponseMessage
 )

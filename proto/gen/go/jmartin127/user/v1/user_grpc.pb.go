@@ -22,7 +22,7 @@ type UsersClient interface {
 	AddUser(ctx context.Context, in *AddUserRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	ModifyUser(ctx context.Context, in *ModifyUserRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	GetUser(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*GetUserReply, error)
-	DeleteUser(ctx context.Context, in *DeleteUserRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	RemoveUser(ctx context.Context, in *RemoveUserRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 }
 
 type usersClient struct {
@@ -60,9 +60,9 @@ func (c *usersClient) GetUser(ctx context.Context, in *GetUserRequest, opts ...g
 	return out, nil
 }
 
-func (c *usersClient) DeleteUser(ctx context.Context, in *DeleteUserRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+func (c *usersClient) RemoveUser(ctx context.Context, in *RemoveUserRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/jmartin127.user.v1.Users/DeleteUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/jmartin127.user.v1.Users/RemoveUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -76,7 +76,7 @@ type UsersServer interface {
 	AddUser(context.Context, *AddUserRequest) (*empty.Empty, error)
 	ModifyUser(context.Context, *ModifyUserRequest) (*empty.Empty, error)
 	GetUser(context.Context, *GetUserRequest) (*GetUserReply, error)
-	DeleteUser(context.Context, *DeleteUserRequest) (*empty.Empty, error)
+	RemoveUser(context.Context, *RemoveUserRequest) (*empty.Empty, error)
 	mustEmbedUnimplementedUsersServer()
 }
 
@@ -93,8 +93,8 @@ func (UnimplementedUsersServer) ModifyUser(context.Context, *ModifyUserRequest) 
 func (UnimplementedUsersServer) GetUser(context.Context, *GetUserRequest) (*GetUserReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUser not implemented")
 }
-func (UnimplementedUsersServer) DeleteUser(context.Context, *DeleteUserRequest) (*empty.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteUser not implemented")
+func (UnimplementedUsersServer) RemoveUser(context.Context, *RemoveUserRequest) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveUser not implemented")
 }
 func (UnimplementedUsersServer) mustEmbedUnimplementedUsersServer() {}
 
@@ -163,20 +163,20 @@ func _Users_GetUser_Handler(srv interface{}, ctx context.Context, dec func(inter
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Users_DeleteUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteUserRequest)
+func _Users_RemoveUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UsersServer).DeleteUser(ctx, in)
+		return srv.(UsersServer).RemoveUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/jmartin127.user.v1.Users/DeleteUser",
+		FullMethod: "/jmartin127.user.v1.Users/RemoveUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersServer).DeleteUser(ctx, req.(*DeleteUserRequest))
+		return srv.(UsersServer).RemoveUser(ctx, req.(*RemoveUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -201,8 +201,8 @@ var Users_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Users_GetUser_Handler,
 		},
 		{
-			MethodName: "DeleteUser",
-			Handler:    _Users_DeleteUser_Handler,
+			MethodName: "RemoveUser",
+			Handler:    _Users_RemoveUser_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

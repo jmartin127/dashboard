@@ -51,7 +51,9 @@ gRPCurl: https://github.com/fullstorydev/grpcurl
 
 grpc-json-proxy: https://github.com/jnewmano/grpc-json-proxy
 
-grpc-gateway: https://github.com/grpc-ecosystem/grpc-gateway
+grpc-gateway GitHub: https://github.com/grpc-ecosystem/grpc-gateway
+
+grpc-gateway Docs: https://grpc-ecosystem.github.io/grpc-gateway/
 
 grpc google.api.http annotations: https://github.com/googleapis/googleapis/blob/master/google/api/http.proto#L46
 
