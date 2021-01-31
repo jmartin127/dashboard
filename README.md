@@ -66,7 +66,6 @@ Swagger UI: https://github.com/swagger-api/swagger-ui
 Validation (protoc-gen-validate): https://github.com/envoyproxy/protoc-gen-validate
 
 # TODO
-1. Fix the title of the swagger page
 1. Finish the presentation
 1. Actually hook this up to Google APIs
 1. Dockerize protoc tools (protoc-gen-grpc-gateway, protoc-gen-openapiv2, protoc-gen-go, protoc-gen-go-grpc)

@@ -6,8 +6,21 @@ option go_package = "github.com/jmartin127/dashboard/proto/gen/go/jmartin127/das
 
 import "google/api/annotations.proto";
 import "validate/validate.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
 import "jmartin127/traffic/v1/traffic.proto";
 import "jmartin127/weather/v1/weather.proto";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+	info: {
+		title: "Dashboard Service";
+		version: "1.0";
+		contact: {
+			name: "Jeff Martin";
+			url: "https://github.com/jmartin127/dashboard";
+			email: "noreply@gmail.com";
+		};
+	};
+};
 
 service Dashboard {
   rpc GetDashboard (GetDashboardRequest) returns (GetDashboardReply) {

@@ -1,18 +1,23 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "jmartin127/traffic/v1/traffic.proto",
-    "version": "version not set"
+    "title": "Dashboard Service",
+    "version": "1.0",
+    "contact": {
+      "name": "Jeff Martin",
+      "url": "https://github.com/jmartin127/dashboard",
+      "email": "noreply@gmail.com"
+    }
   },
   "tags": [
+    {
+      "name": "Dashboard"
+    },
     {
       "name": "Traffic"
     },
     {
       "name": "Weather"
-    },
-    {
-      "name": "Dashboard"
     },
     {
       "name": "Users"
