@@ -74,8 +74,10 @@ message RemoveUserRequest {
 }
 
 message User {
-  string username = 1 [(validate.rules).string.min_len = 1];
-  string email = 2 [(validate.rules).string.email = true];
+  string username = 1 [(validate.rules).string = {
+    pattern: "^[a-z0-9_-]{3,16}$",
+  }];
+  string email = 2 [(validate.rules).string.email = true]; // RFC 1034
   string firstName = 3 [(validate.rules).string.min_len = 1];
   string lastName = 4 [(validate.rules).string.min_len = 1];
 }

@@ -43,7 +43,6 @@ func run() error {
 	mux := http.NewServeMux()
 
 	// Register gRPC server endpoint
-	// Note: Make sure the gRPC server is running properly and accessible
 	gwmux := runtime.NewServeMux()
 	opts := []grpc.DialOption{grpc.WithInsecure()}
 

@@ -430,10 +430,10 @@ func (m *User) Validate() error {
 		return nil
 	}
 
-	if utf8.RuneCountInString(m.GetUsername()) < 1 {
+	if !_User_Username_Pattern.MatchString(m.GetUsername()) {
 		return UserValidationError{
 			field:  "Username",
-			reason: "value length must be at least 1 runes",
+			reason: "value does not match regex pattern \"^[a-z0-9_-]{3,16}$\"",
 		}
 	}
 
@@ -565,3 +565,5 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = UserValidationError{}
+
+var _User_Username_Pattern = regexp.MustCompile("^[a-z0-9_-]{3,16}$")

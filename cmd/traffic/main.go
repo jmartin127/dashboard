@@ -27,7 +27,6 @@ func (s *server) GetTravelTime(ctx context.Context, in *pb.GetTravelTimeRequest)
 		return nil, status.Error(codes.InvalidArgument, err.Error())
 	}
 
-	// TODO integrate with Google API
 	return &pb.GetTravelTimeReply{TravelTime: durationpb.New(11 * time.Minute)}, nil
 }
 
@@ -38,9 +37,7 @@ func main() {
 	}
 
 	s := grpc.NewServer()
-
 	reflection.Register(s) // needed for reflection API on the gRPC server
-
 	pb.RegisterTrafficServer(s, &server{})
 
 	log.Printf("Traffic Service listening on port %s\n", port)
