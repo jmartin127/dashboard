@@ -7,7 +7,7 @@ This is an example project I put together to demonstrate the utility of some awe
 `make all`
 
 # Presentation
-https://docs.google.com/presentation/d/1b-fvoFVGGcpTgzUqji87urCnDqLBS4EmzM3yILDkJO8/edit?usp=sharing
+[Presentation Slides are Here](grpc-REST-and-Go-presentation.pdf)
 
 # Swagger
 
