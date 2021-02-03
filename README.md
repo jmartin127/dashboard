@@ -6,6 +6,9 @@ This is an example project I put together to demonstrate the utility of some awe
 
 `make all`
 
+# Presentation
+https://docs.google.com/presentation/d/1b-fvoFVGGcpTgzUqji87urCnDqLBS4EmzM3yILDkJO8/edit?usp=sharing
+
 # Swagger
 
 http://localhost:8081/swaggerui/#/
